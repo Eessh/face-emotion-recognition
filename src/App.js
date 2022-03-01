@@ -1,6 +1,9 @@
+import WebcamComponent from './components/Webcam';
+import { loadEssentialModels } from './utils/faceAPI';
 import logo from './logo.svg';
 import './App.css';
-import WebcamComponent from './components/Webcam';
+
+loadEssentialModels();
 
 function App() {
   return (
