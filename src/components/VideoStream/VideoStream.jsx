@@ -1,21 +1,21 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { detectFaces } from "../../utils/faceAPI";
 import Webcam from "react-webcam";
-import "./Webcam.css";
+import "./VideoStream.css";
 
 const VideoConstraints = {
-  width: 1080,
-  height: 720,
   facingMode: "user"
 }
 
-const WebcamComponent = () => {
+const VideoStream = ({ setInfo }) => {
   const webcamRef = useRef(null);
 
   useEffect(() => {
+    // Calling getFaces() 2-times every second
+    // detects the faces, emotions in the video stream 2-times per second
     const tick = setInterval(async () => {
       await getFaces();
-    }, 1000);
+    }, 500);
     return() => {
       clearInterval(tick);
     }
@@ -23,12 +23,9 @@ const WebcamComponent = () => {
 
   const getFaces = useCallback(async () => {
     if (webcamRef.current != null) {
-      const faces = detectFaces(webcamRef.current.video);
+      const info = await detectFaces(webcamRef.current.video);
+      setInfo(info);
     }
-  }, [webcamRef]);
-
-  const handleVideoStream = useCallback((stream) => {
-    // TODO
   }, [webcamRef]);
 
   return(
@@ -36,9 +33,8 @@ const WebcamComponent = () => {
       audio={false}
       ref={webcamRef}
       videoConstraints={VideoConstraints}
-      onUserMedia={handleVideoStream}
     />
   );
 };
 
-export default WebcamComponent;
+export default VideoStream;

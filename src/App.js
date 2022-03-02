@@ -1,6 +1,8 @@
-import WebcamComponent from './components/Webcam';
+import Home from './components/Home';
+import Dashboard from './components/Dashboard';
+// import VideoStream from './components/VideoStream';
 import { loadEssentialModels } from './utils/faceAPI';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 loadEssentialModels();
@@ -9,7 +11,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/* <Home /> */}
+        <Dashboard />
+        {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -20,8 +24,8 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
-        <WebcamComponent />
+        </a> */}
+        {/* <WebcamComponent /> */}
       </header>
     </div>
   );
