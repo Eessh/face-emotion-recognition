@@ -1,16 +1,20 @@
-import { useState } from "react";
 import VideoStream from "../VideoStream";
 import VideoStreamOverlay from "../VideoStreamOverlay";
 import "./VideoComponent.css";
 
-const VideoComponent = () => {
-  const [info, setInfo] = useState(null);
-
+const VideoComponent = ({ clockTicks, setClockTicks, info, setInfo, setRecordedExpressions, getFormattedExpressions, setMountedVideoComponent }) => {
   return(
-    <div className="video-component">
-      <VideoStream setInfo={setInfo} />
+    <>
+      <VideoStream
+        clockTicks={clockTicks}
+        setClockTicks={setClockTicks}
+        setInfo={setInfo}
+        setRecordedExpressions={setRecordedExpressions}
+        getFormattedExpressions={getFormattedExpressions}
+        setMountedVideoComponent={setMountedVideoComponent}
+      />
       <VideoStreamOverlay info={info} />
-    </div>
+    </>
   );
 };
 
