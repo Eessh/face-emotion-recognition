@@ -44,9 +44,54 @@ const useDashboardContext = () => {
   return context;
 };
 
+const formatExpression = (currentExpression) => {
+  if (currentExpression === undefined || currentExpression === null) {
+    return null;
+  }
+  const expression = [];
+  for (const [key, value] of Object.entries(currentExpression[0].expressions)) {
+    expression.push({
+      expression: key,
+      percent: value*100
+    });
+  }
+  return expression;
+};
+
+const recordExpression = (recordedExpressions, currentExpression) => {
+  if (currentExpression === undefined || currentExpression === null) {
+    return recordedExpressions;
+  }
+  const {clockTicks} = useDashboardContext();
+  if (clockTicks === undefined || clockTicks === null) {
+    throw new Error("Error: recordExpression() can only be used inside of DashboardContext.");
+  }
+  if (recordedExpressions.length < 1) {
+    currentExpression.forEach((current) => {
+      recordedExpressions.push({
+        id: current.expression,
+        data: [{
+          x: clockTicks,
+          y: current.percent
+        }]
+      });
+    });
+    return recordedExpressions;
+  }
+  currentExpression.forEach((current, index) => {
+    recordedExpressions[index].data.push({
+      x: clockTicks,
+      y: current.percent    
+    });
+  });
+  return recordedExpressions;
+};
+
 export {
   DashboardContextProvider,
   DashboardContextConsumer,
   useDashboardContext,
   expressions,
+  formatExpression,
+  recordExpression,
 };
