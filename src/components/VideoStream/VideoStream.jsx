@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { detectFaces } from "../../utils/faceAPI";
-import { useDashboardContext, formatExpression, recordExpression } from "../Dashboard";
+import { useDashboardContext, useFormatExpression, useRecordExpression } from "../Dashboard";
 import Webcam from "react-webcam";
 import "./VideoStream.css";
 
@@ -65,7 +65,7 @@ const VideoStream = () => {
       await setCurrentExpression(expression);
       await setRecordedExpressions((recordedExpressions) => {
         console.log("Recorded Expressions: ", recordedExpressions);
-        return recordExpression(recordedExpressions, formatExpression(info));
+        return useRecordExpression(recordedExpressions, useFormatExpression(info));
       });
     }
   }, [webcamRef]);

@@ -44,7 +44,7 @@ const useDashboardContext = () => {
   return context;
 };
 
-const formatExpression = (currentExpression) => {
+const useFormatExpression = (currentExpression) => {
   if (currentExpression === undefined || currentExpression === null) {
     return null;
   }
@@ -58,7 +58,7 @@ const formatExpression = (currentExpression) => {
   return expression;
 };
 
-const recordExpression = (recordedExpressions, currentExpression) => {
+const useRecordExpression = (recordedExpressions, currentExpression) => {
   if (currentExpression === undefined || currentExpression === null) {
     return recordedExpressions;
   }
@@ -92,6 +92,6 @@ export {
   DashboardContextConsumer,
   useDashboardContext,
   expressions,
-  formatExpression,
-  recordExpression,
+  useFormatExpression as formatExpression,
+  useRecordExpression as recordExpression,
 };
