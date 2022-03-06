@@ -1,9 +1,11 @@
 import { ResponsiveBar } from "@nivo/bar";
+import { useDashboardContext, formatExpression } from "../Dashboard";
 import Spinner from "../Spinner/Spinner";
 import "./RealTimeEmotion.css";
 
-const RealTimeEmotion = ({ expressions, mountedVideoComponent }) => {
+const RealTimeEmotion = () => {
 
+  const { currentExpression, mountedVideoComponent } = useDashboardContext();
   const getTooltip = (data) => {
     // should only return HTML
     return (
@@ -12,9 +14,9 @@ const RealTimeEmotion = ({ expressions, mountedVideoComponent }) => {
   };
 
   return(
-    expressions != null && mountedVideoComponent
+    (currentExpression != null && currentExpression != undefined) && mountedVideoComponent
     ? <ResponsiveBar
-        data={expressions}
+        data={formatExpression(currentExpression)}
         keys={["percent"]}
         indexBy={"expression"}
         layout={"vertical"}

@@ -1,6 +1,10 @@
+import { useDashboardContext } from "../Dashboard";
 import "./VideoStreamOverlay.css";
 
-const VideoStreamOverlay = ({ info }) => {
+const VideoStreamOverlay = () => {
+
+  const { currentExpression } = useDashboardContext();
+
   return(
     <></>
   );

@@ -1,3 +1,19 @@
 import Dashboard from "./Dashboard";
+import {
+  DashboardContextProvider,
+  DashboardContextConsumer,
+  useDashboardContext,
+  expressions,
+  formatExpression,
+  recordExpression
+} from "./DashboardContext"
 
-export default Dashboard;
+export {
+  Dashboard,
+  DashboardContextProvider,
+  DashboardContextConsumer,
+  useDashboardContext,
+  expressions,
+  formatExpression,
+  recordExpression
+};

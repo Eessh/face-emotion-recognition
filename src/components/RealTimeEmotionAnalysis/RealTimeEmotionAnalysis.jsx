@@ -1,9 +1,14 @@
 import { ResponsiveAreaBump } from "@nivo/bump";
+import { useDashboardContext } from "../Dashboard";
 import Spinner from "../Spinner/Spinner";
 import "./RealTimeEmotionAnalysis.css";
 
-const RealTimeEmotionAnalysis = ({ clockTicks, recordedExpressions, mountedVideoComponent }) => {
+const RealTimeEmotionAnalysis = () => {
 
+  const {
+    recordedExpressions,
+    mountedVideoComponent
+  } = useDashboardContext();
   const getTooltip = (data) => {
     // should only return HTML
     return (

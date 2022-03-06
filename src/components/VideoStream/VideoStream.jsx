@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { detectFaces } from "../../utils/faceAPI";
+import { useDashboardContext, formatExpression, recordExpression } from "../Dashboard";
 import Webcam from "react-webcam";
 import "./VideoStream.css";
 
@@ -7,8 +8,14 @@ const VideoConstraints = {
   facingMode: "user"
 }
 
-const VideoStream = ({ clockTicks, setClockTicks, setInfo, setRecordedExpressions, getFormattedExpressions, setMountedVideoComponent }) => {
+const VideoStream = () => {
   const webcamRef = useRef(null);
+  const {
+    setClockTicks,
+    setCurrentExpression,
+    setRecordedExpressions,
+    setMountedVideoComponent
+  } = useDashboardContext();
 
   useEffect(() => {
     setTimeout(() => {
@@ -19,46 +26,46 @@ const VideoStream = ({ clockTicks, setClockTicks, setInfo, setRecordedExpression
     const tick = setInterval(async () => {
       setClockTicks((t) => t+1);
       await getFaces();
-    }, 5000);
+    }, 1000);
     return() => {
       clearInterval(tick);
     }
   }, []);
 
-  const pushFormattedExpression = (recordedExpressions, latestExpression) => {
-    console.log("latestExpression: ", latestExpression);
-    if (latestExpression === null || latestExpression === undefined) {
-      return recordedExpressions;
-    }
-    const expressions = ["neutral", "happy", "sad", "angry", "fearful", "disgusted", "suprised"];
-    if (recordedExpressions.length < 1) {
-      latestExpression.forEach((latest) => {
-        recordedExpressions.push({
-          id: latest.expression,
-          data: [{
-            x: clockTicks,
-            y: latest.percent
-          }]
-        })
-      });
-      return recordedExpressions;
-    }
-    latestExpression.forEach((latest, index) => {
-      recordedExpressions[index].data.push({
-        x: clockTicks,
-        y: latest.percent
-      });
-    });
-    return recordedExpressions;
-  };
+  // const pushFormattedExpression = (recordedExpressions, latestExpression) => {
+  //   console.log("latestExpression: ", latestExpression);
+  //   if (latestExpression === null || latestExpression === undefined) {
+  //     return recordedExpressions;
+  //   }
+  //   const expressions = ["neutral", "happy", "sad", "angry", "fearful", "disgusted", "suprised"];
+  //   if (recordedExpressions.length < 1) {
+  //     latestExpression.forEach((latest) => {
+  //       recordedExpressions.push({
+  //         id: latest.expression,
+  //         data: [{
+  //           x: clockTicks,
+  //           y: latest.percent
+  //         }]
+  //       })
+  //     });
+  //     return recordedExpressions;
+  //   }
+  //   latestExpression.forEach((latest, index) => {
+  //     recordedExpressions[index].data.push({
+  //       x: clockTicks,
+  //       y: latest.percent
+  //     });
+  //   });
+  //   return recordedExpressions;
+  // };
 
   const getFaces = useCallback(async () => {
     if (webcamRef.current != null) {
-      const info = await detectFaces(webcamRef.current.video);
-      await setInfo(info);
+      const expression = await detectFaces(webcamRef.current.video);
+      await setCurrentExpression(expression);
       await setRecordedExpressions((recordedExpressions) => {
         console.log("Recorded Expressions: ", recordedExpressions);
-        return pushFormattedExpression(recordedExpressions, getFormattedExpressions(info))
+        return recordExpression(recordedExpressions, formatExpression(info));
       });
     }
   }, [webcamRef]);
