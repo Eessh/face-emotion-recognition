@@ -32,7 +32,7 @@ const detectFaces = async (image) => {
                         .withFaceLandmarks()
                         .withFaceExpressions()
                         .withAgeAndGender();
-  console.info("Faces: ", faceapi.resizeResults(faces, displaySize));
+  // console.info("Faces: ", faceapi.resizeResults(faces, displaySize));
   return faceapi.resizeResults(faces, displaySize);
 };
 
