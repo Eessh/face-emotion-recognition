@@ -33,7 +33,7 @@ const detectFaces = async (image) => {
                         .withFaceExpressions()
                         .withAgeAndGender();
   // console.info("Faces: ", faceapi.resizeResults(faces, displaySize));
-  return faceapi.resizeResults(faces, displaySize)[0].expressions;
+  return faceapi.resizeResults(faces, displaySize);
 };
 
 const loadAgeGenderModel = () => {

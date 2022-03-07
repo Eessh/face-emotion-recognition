@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { detectFaces } from "../../utils/faceAPI";
-import { useDashboardContext, useFormatExpression, useRecordExpression } from "../Dashboard";
+import { useDashboardContext } from "../Dashboard";
 import Webcam from "react-webcam";
 import "./VideoStream.css";
 
@@ -11,7 +11,7 @@ const VideoConstraints = {
 const VideoStream = () => {
   const webcamRef = useRef(null);
   const {
-    setClockTicks,
+    clockTicks, setClockTicks,
     setCurrentExpression,
     setRecordedExpressions,
     setMountedVideoComponent
@@ -21,51 +21,75 @@ const VideoStream = () => {
     setTimeout(() => {
       setMountedVideoComponent(true);
     }, 2000);
+  }, []);
+
+  useEffect(() => {
     // Calling getFaces() 2-times every second
     // detects the faces, emotions in the video stream 2-times per second
     const tick = setInterval(async () => {
-      setClockTicks((t) => t+1);
+      // await incClockTicks();
       await getFaces();
-    }, 1000);
+    }, 500);
     return() => {
       clearInterval(tick);
     }
   }, []);
 
-  // const pushFormattedExpression = (recordedExpressions, latestExpression) => {
-  //   console.log("latestExpression: ", latestExpression);
-  //   if (latestExpression === null || latestExpression === undefined) {
-  //     return recordedExpressions;
-  //   }
-  //   const expressions = ["neutral", "happy", "sad", "angry", "fearful", "disgusted", "suprised"];
-  //   if (recordedExpressions.length < 1) {
-  //     latestExpression.forEach((latest) => {
-  //       recordedExpressions.push({
-  //         id: latest.expression,
-  //         data: [{
-  //           x: clockTicks,
-  //           y: latest.percent
-  //         }]
-  //       })
-  //     });
-  //     return recordedExpressions;
-  //   }
-  //   latestExpression.forEach((latest, index) => {
-  //     recordedExpressions[index].data.push({
-  //       x: clockTicks,
-  //       y: latest.percent
-  //     });
-  //   });
-  //   return recordedExpressions;
-  // };
+  const incClockTicks = async () => {
+    await setClockTicks(t => t+1);
+  }
+
+  const formatExpression = (info) => {
+    if (info === undefined || info === null) {
+      return null;
+    }
+    const expression = [];
+    for (const [key, value] of Object.entries(info[0].expressions)) {
+      expression.push({
+        expression: key,
+        percent: value*100
+      });
+    }
+    return expression;
+  };
+
+  const recordExpression = (recordedExpressions, currentExpression) => {
+    if (currentExpression === undefined || currentExpression === null) {
+      return recordedExpressions;
+    }
+    if (clockTicks === undefined || clockTicks === null) {
+      throw new Error("Error: recordExpression() can only be used inside of DashboardContext.");
+    }
+    if (recordedExpressions.length < 1) {
+      const date = new Date();
+      currentExpression.forEach((current) => {
+        recordedExpressions.push({
+          id: current.expression,
+          data: [{
+            // x: clockTicks,
+            x: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+            y: current.percent
+          }]
+        });
+      });
+      return recordedExpressions;
+    }
+    currentExpression.forEach((current, index) => {
+      recordedExpressions[index].data.push({
+        x: clockTicks,
+        y: current.percent    
+      });
+    });
+    return recordedExpressions;
+  };
 
   const getFaces = useCallback(async () => {
     if (webcamRef.current != null) {
-      const expression = await detectFaces(webcamRef.current.video);
-      await setCurrentExpression(expression);
+      const info = await detectFaces(webcamRef.current.video);
+      await setCurrentExpression(formatExpression(info));
       await setRecordedExpressions((recordedExpressions) => {
         console.log("Recorded Expressions: ", recordedExpressions);
-        return useRecordExpression(recordedExpressions, useFormatExpression(info));
+        return recordExpression(recordedExpressions, formatExpression(info));
       });
     }
   }, [webcamRef]);

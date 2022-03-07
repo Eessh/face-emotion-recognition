@@ -4,8 +4,6 @@ import {
   DashboardContextConsumer,
   useDashboardContext,
   expressions,
-  useFormatExpression,
-  useRecordExpression
 } from "./DashboardContext"
 
 export {
@@ -14,6 +12,4 @@ export {
   DashboardContextConsumer,
   useDashboardContext,
   expressions,
-  useFormatExpression,
-  useRecordExpression
 };

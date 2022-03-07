@@ -1,6 +1,5 @@
 import Home from './components/Home';
-import Dashboard from './components/Dashboard';
-// import VideoStream from './components/VideoStream';
+import {Dashboard, DashboardContextProvider} from './components/Dashboard';
 import { loadEssentialModels } from './utils/faceAPI';
 // import logo from './logo.svg';
 import './App.css';
@@ -12,7 +11,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <Home /> */}
-        <Dashboard />
+        <DashboardContextProvider>
+          <Dashboard />
+        </DashboardContextProvider>
         {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.

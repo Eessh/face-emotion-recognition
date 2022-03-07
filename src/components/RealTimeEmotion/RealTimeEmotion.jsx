@@ -1,5 +1,5 @@
 import { ResponsiveBar } from "@nivo/bar";
-import { useDashboardContext, useFormatExpression } from "../Dashboard";
+import { useDashboardContext } from "../Dashboard";
 import Spinner from "../Spinner/Spinner";
 import "./RealTimeEmotion.css";
 
@@ -16,7 +16,7 @@ const RealTimeEmotion = () => {
   return(
     (currentExpression != null && currentExpression != undefined) && mountedVideoComponent
     ? <ResponsiveBar
-        data={useFormatExpression(currentExpression)}
+        data={currentExpression}
         keys={["percent"]}
         indexBy={"expression"}
         layout={"vertical"}
