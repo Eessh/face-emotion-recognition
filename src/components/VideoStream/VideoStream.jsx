@@ -14,6 +14,7 @@ const VideoStream = () => {
     clockTicks, setClockTicks,
     setCurrentExpression,
     setRecordedExpressions,
+    setRecordedExpressions2,
     setMountedVideoComponent
   } = useDashboardContext();
 
@@ -22,6 +23,13 @@ const VideoStream = () => {
       setMountedVideoComponent(true);
     }, 2000);
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setClockTicks(t => t+1);
+      console.log("clockTicks: ", clockTicks);
+    }, 500);
+  }, [clockTicks]);
 
   useEffect(() => {
     // Calling getFaces() 2-times every second
@@ -61,13 +69,11 @@ const VideoStream = () => {
       throw new Error("Error: recordExpression() can only be used inside of DashboardContext.");
     }
     if (recordedExpressions.length < 1) {
-      const date = new Date();
       currentExpression.forEach((current) => {
         recordedExpressions.push({
           id: current.expression,
           data: [{
-            // x: clockTicks,
-            x: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+            x: clockTicks,
             y: current.percent
           }]
         });
@@ -76,8 +82,9 @@ const VideoStream = () => {
     }
     currentExpression.forEach((current, index) => {
       recordedExpressions[index].data.push({
-        x: clockTicks,
-        y: current.percent    
+        // x: clockTicks,
+        x: recordedExpressions[index].data.length+1,
+        y: current.percent
       });
     });
     return recordedExpressions;
@@ -91,6 +98,9 @@ const VideoStream = () => {
         console.log("Recorded Expressions: ", recordedExpressions);
         return recordExpression(recordedExpressions, formatExpression(info));
       });
+      await setRecordedExpressions2((recordedExpressions2) => {
+        return [...recordedExpressions2, info[0].expressions];
+      });
     }
   }, [webcamRef]);
 
@@ -99,6 +109,7 @@ const VideoStream = () => {
       audio={false}
       ref={webcamRef}
       videoConstraints={VideoConstraints}
+      className="shadow-2xl"
     />
   );
 };

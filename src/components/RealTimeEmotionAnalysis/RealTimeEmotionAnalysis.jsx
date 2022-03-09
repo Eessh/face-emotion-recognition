@@ -32,19 +32,8 @@ const RealTimeEmotionAnalysis = () => {
         // enableLabel={false}
         // axisTop={null}
         // axisRight={null}
-        // axisLeft={{
-        //   tickSize: 5,
-        //   tickPadding: 5,
-        //   tickRotation: 0,
-        //   legend: "Percentage",
-        //   legendPosition: "middle",
-        //   legendOffset: -40
-        // }}
-        // axisBottom={{
-        //   legend: "Expression",
-        //   legendPosition: "middle",
-        //   legendOffset: 40
-        // }}
+        axisLeft={null}
+        axisBottom={null}
         // tooltip={(data) => getTooltip(data)}
       />
     : <Spinner />

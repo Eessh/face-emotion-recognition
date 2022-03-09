@@ -7,12 +7,14 @@ const DashboardContextProvider = ({children}) => {
   const [clockTicks, setClockTicks] = useState(0);
   const [currentExpression, setCurrentExpression] = useState(null);
   const [recordedExpressions, setRecordedExpressions] = useState([]);
+  const [recordedExpressions2, setRecordedExpressions2] = useState([]);
   const [mountedVideoComponent, setMountedVideoComponent] = useState(false);
 
   const contextValue = {
     clockTicks, setClockTicks,
     currentExpression, setCurrentExpression,
     recordedExpressions, setRecordedExpressions,
+    recordedExpressions2, setRecordedExpressions2,
     mountedVideoComponent, setMountedVideoComponent
   };
 
