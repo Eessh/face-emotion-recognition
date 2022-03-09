@@ -5,15 +5,11 @@ import "./Dashboard.css";
 const Dashboard = () => {
   return(
     <div className="dashboard flex-1 w-full flex flex-row">
-      <div className="dashboard-left flex-1 flex flex-row items-center justify-center">
-        <div className="videocomponent">
+      <div className="dashboard-left videocomponent flex-1 flex flex-row items-center justify-center">
           <VideoComponent />
-        </div>
       </div>
-      <div className="dashboard-right flex-1">
-        <div className="realtime-emotion flex flex-row items-center justify-center h-full">
+      <div className="dashboard-right flex-1 realtime-emotion flex flex-row items-center justify-center h-full">
           <RealTimeEmotion />
-        </div>
       </div>
     </div>
   );
