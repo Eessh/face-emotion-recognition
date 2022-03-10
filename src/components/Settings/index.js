@@ -1,5 +1,13 @@
 import Settings from "./Settings";
+import {
+  SettingsContextProvider,
+  SettingsContextConsumer,
+  useSettingsContext
+} from "./SettingsContext";
 
 export {
-  Settings
+  Settings,
+  SettingsContextProvider,
+  SettingsContextConsumer,
+  useSettingsContext
 };
