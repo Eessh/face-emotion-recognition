@@ -17,8 +17,8 @@ const Settings = () => {
         <span className="flex flex-col items-center justify-center">
           <Toggle
             initialState={webcamOn}
-            onFunc={() => setWebcamOn(true)}
-            offFunc={() => setWebcamOn(false)}
+            onFunc={() => {setWebcamOn(true)}}
+            offFunc={() => {setWebcamOn(false)}}
           />
         </span>
       </div>

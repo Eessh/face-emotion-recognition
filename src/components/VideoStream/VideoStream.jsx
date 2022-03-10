@@ -11,10 +11,8 @@ const VideoConstraints = {
 const VideoStream = () => {
   const webcamRef = useRef(null);
   const {
-    clockTicks, setClockTicks,
     setCurrentExpression,
     setRecordedExpressions,
-    setRecordedExpressions2,
     setMountedVideoComponent
   } = useDashboardContext();
 
@@ -25,17 +23,9 @@ const VideoStream = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      setClockTicks(t => t+1);
-      console.log("clockTicks: ", clockTicks);
-    }, 500);
-  }, [clockTicks]);
-
-  useEffect(() => {
     // Calling getFaces() 2-times every second
     // detects the faces, emotions in the video stream 2-times per second
     const tick = setInterval(async () => {
-      // await incClockTicks();
       await getFaces();
     }, 500);
     return() => {
@@ -43,12 +33,20 @@ const VideoStream = () => {
     }
   }, []);
 
-  const incClockTicks = async () => {
-    await setClockTicks(t => t+1);
-  }
-
+  /**
+   * 
+   * @param {Object} info - Object with details of Age, Expressions, ...
+   * @returns {Object} - Returns expression of the first face recorded.
+   */
   const formatExpression = (info) => {
-    if (info === undefined || info === null) {
+    if (
+      info === undefined ||
+      info === null ||
+      info[0] === undefined ||
+      info[0] === null ||
+      info[0].expressions === undefined ||
+      info[0].expressions === null
+    ) {
       return null;
     }
     const expression = [];
@@ -61,19 +59,22 @@ const VideoStream = () => {
     return expression;
   };
 
+  /**
+   * 
+   * @param {Array} recordedExpressions - Expressions recorded upto this point of time.
+   * @param {Object} currentExpression - Current expression from the video stream
+   * @returns {Array} - Returns an array of recorded expressions
+   */
   const recordExpression = (recordedExpressions, currentExpression) => {
     if (currentExpression === undefined || currentExpression === null) {
       return recordedExpressions;
-    }
-    if (clockTicks === undefined || clockTicks === null) {
-      throw new Error("Error: recordExpression() can only be used inside of DashboardContext.");
     }
     if (recordedExpressions.length < 1) {
       currentExpression.forEach((current) => {
         recordedExpressions.push({
           id: current.expression,
           data: [{
-            x: clockTicks,
+            x: 0,
             y: current.percent
           }]
         });
@@ -82,7 +83,6 @@ const VideoStream = () => {
     }
     currentExpression.forEach((current, index) => {
       recordedExpressions[index].data.push({
-        // x: clockTicks,
         x: recordedExpressions[index].data.length+1,
         y: current.percent
       });
@@ -93,13 +93,19 @@ const VideoStream = () => {
   const getFaces = useCallback(async () => {
     if (webcamRef.current != null) {
       const info = await detectFaces(webcamRef.current.video);
-      await setCurrentExpression(formatExpression(info));
+      const formattedExpression = formatExpression(info);
+      await setCurrentExpression((previousExpression) => {
+        if (formattedExpression === undefined || formattedExpression === null) {
+          return previousExpression;
+        }
+        return formattedExpression;
+      });
       await setRecordedExpressions((recordedExpressions) => {
         console.log("Recorded Expressions: ", recordedExpressions);
+        if (formattedExpression === undefined || formattedExpression === null) {
+          return recordedExpressions;
+        }
         return recordExpression(recordedExpressions, formatExpression(info));
-      });
-      await setRecordedExpressions2((recordedExpressions2) => {
-        return [...recordedExpressions2, info[0].expressions];
       });
     }
   }, [webcamRef]);
