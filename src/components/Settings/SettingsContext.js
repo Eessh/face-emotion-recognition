@@ -7,12 +7,14 @@ const SettingsContextProvider = ({children}) => {
   const [overlayOn, setOverlayOn] = useState(false);
   const [faceDetectionOn, setFaceDetectionOn] = useState(false);
   const [emojiAnimationOn, setEmojiAnimationOn] = useState(false);
+  const [settingsVisible, setSettingsVisible] = useState(false);
 
   const contextValue = {
     webcamOn, setWebcamOn,
     overlayOn, setOverlayOn,
     faceDetectionOn, setFaceDetectionOn,
-    emojiAnimationOn, setEmojiAnimationOn
+    emojiAnimationOn, setEmojiAnimationOn,
+    settingsVisible, setSettingsVisible
   };
 
   return(
