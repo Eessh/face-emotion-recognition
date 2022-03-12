@@ -3,8 +3,8 @@ import { createContext, useContext, useState } from "react";
 const SettingsContext = createContext({});
 
 const SettingsContextProvider = ({children}) => {
-  const [webcamOn, setWebcamOn] = useState(true);
-  const [overlayOn, setOverlayOn] = useState(false);
+  const [webcamOn, setWebcamOn] = useState(false);
+  const [overlayOn, setOverlayOn] = useState(true);
   const [faceDetectionOn, setFaceDetectionOn] = useState(false);
   const [emojiAnimationOn, setEmojiAnimationOn] = useState(false);
   const [settingsVisible, setSettingsVisible] = useState(false);

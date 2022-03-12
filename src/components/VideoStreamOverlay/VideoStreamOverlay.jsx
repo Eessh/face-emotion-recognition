@@ -2,11 +2,10 @@ import { useDashboardContext } from "../Dashboard";
 import "./VideoStreamOverlay.css";
 
 const VideoStreamOverlay = () => {
-
-  const { currentExpression } = useDashboardContext();
+  const { canvasRef } = useDashboardContext();
 
   return(
-    <></>
+    <canvas className="absolute left-0 top-0 shadow-2xl m-4" ref={canvasRef}></canvas>
   );
 };
 
