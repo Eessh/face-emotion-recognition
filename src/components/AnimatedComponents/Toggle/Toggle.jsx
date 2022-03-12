@@ -18,8 +18,8 @@ const Toggle = ({ initialState, offFunc, onFunc, transitionType }) => {
         //                   ? theme.toggle.state.on.backgroundColor
         //                   : theme.toggle.state.off.backgroundColor
         backgroundColor: toggleDirection === 20
-                          ? "white"
-                          : "black"
+                          ? "#FE8F8F"
+                          : "#FE8F8F"
       }}
       onTap={handleClick}
     >
@@ -40,7 +40,7 @@ const Toggle = ({ initialState, offFunc, onFunc, transitionType }) => {
             //                   ? theme.toggle.state.on.color
             //                   : theme.toggle.state.off.color
             backgroundColor: toggleDirection === 20
-                              ? "black"
+                              ? "#483434"
                               : "whitesmoke"
           }}
           whileHover={{ scale: 1.25 }}

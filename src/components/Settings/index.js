@@ -4,10 +4,12 @@ import {
   SettingsContextConsumer,
   useSettingsContext
 } from "./SettingsContext";
+import SettingsModal from "./SettingsModal";
 
 export {
   Settings,
   SettingsContextProvider,
   SettingsContextConsumer,
-  useSettingsContext
+  useSettingsContext,
+  SettingsModal
 };

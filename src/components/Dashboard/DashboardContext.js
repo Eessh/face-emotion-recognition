@@ -5,6 +5,7 @@ const expressions = ["neutral", "happy", "sad", "angry", "fearful", "disgusted",
 
 const DashboardContextProvider = ({children}) => {
   const [currentExpression, setCurrentExpression] = useState(null);
+  const [emoji, setEmoji] = useState(null);
   const [recordedExpressions, setRecordedExpressions] = useState([]);
   const [recordedExpressions2, setRecordedExpressions2] = useState([]);
   const [mountedVideoComponent, setMountedVideoComponent] = useState(false);
@@ -12,6 +13,7 @@ const DashboardContextProvider = ({children}) => {
 
   const contextValue = {
     currentExpression, setCurrentExpression,
+    emoji, setEmoji,
     recordedExpressions, setRecordedExpressions,
     recordedExpressions2, setRecordedExpressions2,
     mountedVideoComponent, setMountedVideoComponent,

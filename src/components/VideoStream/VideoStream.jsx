@@ -13,6 +13,7 @@ const VideoStream = () => {
   const webcamRef = useRef(null);
   const {
     setCurrentExpression,
+    setEmoji,
     setRecordedExpressions,
     setMountedVideoComponent,
     canvasRef
@@ -64,6 +65,25 @@ const VideoStream = () => {
 
   /**
    * 
+   * @param {Array} formattedExpression - Formatted expression
+   * @returns {String} - Returns the emoji name.
+   */
+  const getEmojiName = (formattedExpression) => {
+    if (formattedExpression === null || formattedExpression === undefined || formattedExpression.length < 1) {
+      return null;
+    }
+    let emojiName = null, maxPercent = Number.NEGATIVE_INFINITY;
+    formattedExpression.forEach((expr) => {
+      if (expr.percent > maxPercent) {
+        emojiName = expr.expression;
+        maxPercent = expr.percent;
+      }
+    });
+    return emojiName;
+  };
+
+  /**
+   * 
    * @param {Array} recordedExpressions - Expressions recorded upto this point of time.
    * @param {Object} currentExpression - Current expression from the video stream
    * @returns {Array} - Returns an array of recorded expressions
@@ -101,6 +121,16 @@ const VideoStream = () => {
         // await drawResults(webcamRef.current.video, canvasRef.current, info, "expressions");
       }
       const formattedExpression = formatExpression(info);
+      await setEmoji((previousEmoji) => {
+        if (formattedExpression === undefined || formattedExpression === null) {
+          return previousEmoji;
+        }
+        const name = getEmojiName(formattedExpression);
+        if (name === null) {
+          return previousEmoji;
+        }
+        return name;
+      });
       await setCurrentExpression((previousExpression) => {
         if (formattedExpression === undefined || formattedExpression === null) {
           return previousExpression;

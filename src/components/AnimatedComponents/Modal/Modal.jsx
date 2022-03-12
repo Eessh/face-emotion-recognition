@@ -9,7 +9,7 @@ const Modal = (props) => {
         // drag
         // dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="Modal"
+        className="Modal bg-bg-1 m-auto p-2 rounded-2xl flex flex-col items-center"
         variants={dropIn}
         initial="hidden"
         animate="visible"
