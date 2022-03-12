@@ -14,7 +14,7 @@ const RealTimeEmotion = () => {
   };
 
   return(
-    (currentExpression != null && currentExpression != undefined) && mountedVideoComponent
+    currentExpression != null && currentExpression != undefined && mountedVideoComponent
     ? <ResponsiveBar
         data={currentExpression}
         keys={["percent"]}

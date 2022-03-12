@@ -1,5 +1,6 @@
 import Home from './components/Home';
 import {Dashboard, DashboardContextProvider} from './components/Dashboard';
+import { SettingsContextProvider } from './components/Settings';
 import { loadEssentialModels } from './utils/faceAPI';
 // import logo from './logo.svg';
 import './App.css';
@@ -12,7 +13,9 @@ function App() {
       <header className="App-header">
         {/* <Home /> */}
         <DashboardContextProvider>
-          <Dashboard />
+          <SettingsContextProvider>
+            <Dashboard />
+          </SettingsContextProvider>
         </DashboardContextProvider>
         {/* <img src={logo} className="App-logo" alt="logo" />
         <p>

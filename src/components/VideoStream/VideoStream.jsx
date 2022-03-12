@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
-import { detectFaces } from "../../utils/faceAPI";
+import { detectFaces, drawResults } from "../../utils/faceAPI";
 import { useDashboardContext } from "../Dashboard";
+import { useSettingsContext } from "../Settings";
 import Webcam from "react-webcam";
 import "./VideoStream.css";
 
@@ -13,12 +14,14 @@ const VideoStream = () => {
   const {
     setCurrentExpression,
     setRecordedExpressions,
-    setMountedVideoComponent
+    setMountedVideoComponent,
+    canvasRef
   } = useDashboardContext();
+  const { webcamOn, overlayOn } = useSettingsContext();
 
   useEffect(() => {
     setTimeout(() => {
-      setMountedVideoComponent(true);
+      webcamOn && setMountedVideoComponent(true);
     }, 2000);
   }, []);
 
@@ -93,6 +96,10 @@ const VideoStream = () => {
   const getFaces = useCallback(async () => {
     if (webcamRef.current != null) {
       const info = await detectFaces(webcamRef.current.video);
+      if (overlayOn) {
+        await drawResults(webcamRef.current.video, canvasRef.current, info, "boxLandmarks");
+        // await drawResults(webcamRef.current.video, canvasRef.current, info, "expressions");
+      }
       const formattedExpression = formatExpression(info);
       await setCurrentExpression((previousExpression) => {
         if (formattedExpression === undefined || formattedExpression === null) {
@@ -115,7 +122,7 @@ const VideoStream = () => {
       audio={false}
       ref={webcamRef}
       videoConstraints={VideoConstraints}
-      className="shadow-2xl"
+      className="shadow-2xl rounded-lg"
     />
   );
 };

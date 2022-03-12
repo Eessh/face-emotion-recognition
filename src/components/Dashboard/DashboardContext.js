@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 
 const DashboardContext = createContext({});
 const expressions = ["neutral", "happy", "sad", "angry", "fearful", "disgusted", "surprised"];
@@ -8,12 +8,14 @@ const DashboardContextProvider = ({children}) => {
   const [recordedExpressions, setRecordedExpressions] = useState([]);
   const [recordedExpressions2, setRecordedExpressions2] = useState([]);
   const [mountedVideoComponent, setMountedVideoComponent] = useState(false);
+  const canvasRef = useRef();
 
   const contextValue = {
     currentExpression, setCurrentExpression,
     recordedExpressions, setRecordedExpressions,
     recordedExpressions2, setRecordedExpressions2,
-    mountedVideoComponent, setMountedVideoComponent
+    mountedVideoComponent, setMountedVideoComponent,
+    canvasRef
   };
 
   return(
