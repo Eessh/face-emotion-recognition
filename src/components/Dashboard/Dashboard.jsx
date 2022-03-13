@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion";
 import VideoComponent from "../VideoComponent";
 import RealTimeEmotion from "../RealTimeEmotion";
 import {Settings, SettingsModal, useSettingsContext} from "../Settings";
@@ -20,7 +21,19 @@ const Dashboard = () => {
           <RealTimeEmotion />
         </div>
       </div>
-      {settingsVisible && <SettingsModal />}
+      <AnimatePresence
+        // Disable any initial animations on children that
+        // are present when the component is first rendered
+        initial={false}
+        // Only render one component at a time.
+        // The exiting component will finish its exit
+        // animation before entering component is rendered
+        exitBeforeEnter={true}
+        // Fires when all exiting nodes have completed animating out
+        onExitComplete={() => null}
+      >
+        {settingsVisible && <SettingsModal />}
+      </AnimatePresence>
     </div>
   );
 };

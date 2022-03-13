@@ -76,6 +76,23 @@ const drawResults = async (image, canvas, results, type) => {
   }
 };
 
+const drawPredictionsOnOverlay = async (image, canvas, results, faceDetection, faceLandmarks) => {
+  if (image && canvas && results) {
+    const imgSize = image.getBoundingClientRect();
+    const displaySize = { width: imgSize.width, height: imgSize.height };
+    faceapi.matchDimensions(canvas, displaySize);
+    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+    const resizedDetections = faceapi.resizeResults(results, displaySize);
+
+    if (faceDetection === true) {
+      faceapi.draw.drawDetections(canvas, resizedDetections);
+    }
+    if (faceLandmarks === true) {
+      faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
+    }
+  }
+};
+
 export {
   loadEssentialModels,
   detectFaces,
@@ -88,5 +105,6 @@ export {
   loadMTCNNModel,
   loadSSDMobileNetModel,
   loadTinyFaceDetectorModel,
-  drawResults
+  drawResults,
+  drawPredictionsOnOverlay
 };

@@ -6,14 +6,14 @@ const SettingsModal = () => {
 
   const {
     overlayOn, setOverlayOn,
-    faceDetectionOn, setFaceDetectionOn,
-    faceLandmarksOn, setFaceLandmarksOn,
     emojiOn, setEmojiOn,
-    settingsVisible, setSettingsVisible
+    setSettingsVisible
   } = useSettingsContext();
 
   return(
-    <Modal>
+    <Modal
+      backdropClickEvent={() => setSettingsVisible(false)}
+    >
       <div className="w-full flex flex-row items-center justify-between mb-6">
         <span className="text-gray-600 text-2xl ml-2">Settings</span>
         <Button onClick={() => setSettingsVisible(false)}>
@@ -25,42 +25,22 @@ const SettingsModal = () => {
         </Button>
       </div>
       <div className="w-full flex flex-row items-center justify-between mb-2">
-        <span className="text-gray-600 text-xl ml-2">Video Overlay</span>
-        <span className="mr-2">
-          <Toggle
-            initialState={overlayOn}
-            onFunc={() => setOverlayOn(true)}
-            offFunc={() => setOverlayOn(false)}
-          />
-        </span>
-      </div>
-      <div className="w-full flex flex-row items-center justify-between mb-2">
-        <span className="text-gray-600 text-xl ml-2">Face Detection</span>
-        <span className="mr-2">
-          <Toggle
-            initialState={faceDetectionOn}
-            onFunc={() => setFaceDetectionOn(true)}
-            offFunc={() => setFaceDetectionOn(false)}
-          />
-        </span>
-      </div>
-      <div className="w-full flex flex-row items-center justify-between mb-2">
-        <span className="text-gray-600 text-xl ml-2">Face Landmarks</span>
-        <span className="mr-2">
-          <Toggle
-            initialState={faceLandmarksOn}
-            onFunc={() => setFaceLandmarksOn(true)}
-            offFunc={() => setFaceLandmarksOn(false)}
-          />
-        </span>
-      </div>
-      <div className="w-full flex flex-row items-center justify-between mb-2">
         <span className="text-gray-600 text-xl ml-2">Display Emoji</span>
         <span className="mr-2">
           <Toggle
             initialState={emojiOn}
             onFunc={() => setEmojiOn(true)}
             offFunc={() => setEmojiOn(false)}
+          />
+        </span>
+      </div>
+      <div className="w-full flex flex-row items-center justify-between mb-2">
+        <span className="text-gray-600 text-xl ml-2">Video Overlay</span>
+        <span className="mr-2">
+          <Toggle
+            initialState={overlayOn}
+            onFunc={() => setOverlayOn(true)}
+            offFunc={() => setOverlayOn(false)}
           />
         </span>
       </div>

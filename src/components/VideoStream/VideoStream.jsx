@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-import { detectFaces, drawResults } from "../../utils/faceAPI";
+import { detectFaces, drawResults, drawPredictionsOnOverlay } from "../../utils/faceAPI";
 import { useDashboardContext } from "../Dashboard";
 import { useSettingsContext } from "../Settings";
 import Webcam from "react-webcam";
@@ -18,7 +18,10 @@ const VideoStream = () => {
     setMountedVideoComponent,
     canvasRef
   } = useDashboardContext();
-  const { webcamOn, overlayOn } = useSettingsContext();
+  const {
+    webcamOn,
+    overlayOn,
+  } = useSettingsContext();
 
   useEffect(() => {
     setTimeout(() => {
@@ -118,7 +121,6 @@ const VideoStream = () => {
       const info = await detectFaces(webcamRef.current.video);
       if (overlayOn) {
         await drawResults(webcamRef.current.video, canvasRef.current, info, "boxLandmarks");
-        // await drawResults(webcamRef.current.video, canvasRef.current, info, "expressions");
       }
       const formattedExpression = formatExpression(info);
       await setEmoji((previousEmoji) => {

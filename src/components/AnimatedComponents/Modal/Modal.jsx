@@ -2,12 +2,10 @@ import { motion } from "framer-motion";
 import BackDrop from "../Backdrop/Backdrop";
 import "./Modal.css";
 
-const Modal = (props) => {
+const Modal = ({backdropClickEvent, children}) => {
   return (
-    <BackDrop onClick={props.close}>
+    <BackDrop onClick={backdropClickEvent}>
       <motion.div
-        // drag
-        // dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
         onClick={(e) => e.stopPropagation()}
         className="Modal bg-bg-1 m-auto p-2 rounded-2xl flex flex-col items-center"
         variants={dropIn}
@@ -15,7 +13,7 @@ const Modal = (props) => {
         animate="visible"
         exit="exit"
       >
-        {props.children}
+        {children}
       </motion.div>
     </BackDrop>
   )

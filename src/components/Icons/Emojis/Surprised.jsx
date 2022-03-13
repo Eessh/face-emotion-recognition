@@ -1,6 +1,6 @@
 const Surprised = () => {
   return(
-    <svg id="emoji" width={50} height={50} viewBox="0 0 72 72">
+    <svg id="emoji" width={70} height={70} viewBox="0 0 72 72">
       <g id="color">
         <circle cx="36" cy="36" r="23" fill="#FCEA2B"/>
         <ellipse cx="36" cy="48.395" rx="5.2452" ry="6.5383" fill="#FFFFFF"/>

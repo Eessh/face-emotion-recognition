@@ -1,6 +1,6 @@
 const Happy = () => {
   return(
-    <svg id="emoji" width={50} height={50} viewBox="0 0 72 72">
+    <svg id="emoji" width={70} height={70} viewBox="0 0 72 72">
       <g id="color">
         <circle cx="36" cy="36" r="23" fill="#fcea2b"/>
         <path fill="#fff" d="M50.595,41.64a11.5554,11.5554,0,0,1-.87,4.49c-12.49,3.03-25.43.34-27.49-.13a11.4347,11.4347,0,0,1-.83-4.36h.11s14.8,3.59,28.89.07Z"/>

@@ -1,6 +1,6 @@
 const Fearful = () => {
   return(
-    <svg id="emoji" width={50} height={50} viewBox="0 0 72 72">
+    <svg id="emoji" width={70} height={70} viewBox="0 0 72 72">
       <g id="line-supplement">
         <path d="M42.8472,45.6583c0-2.592-3.834-4.694-6.869-4.694s-6.869,2.101-6.869,4.694,3.659.9248,6.694.9248S42.8472,48.25,42.8472,45.6583Z"/>
       </g>

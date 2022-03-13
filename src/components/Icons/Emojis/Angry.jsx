@@ -1,6 +1,6 @@
 const Angry = () => {
   return(
-    <svg id="emoji" width={50} height={50} viewBox="0 0 72 72">
+    <svg id="emoji" width={70} height={70} viewBox="0 0 72 72">
       <g id="color">
         <path fill="#E27022" d="M36,13c-12.6823,0-23,10.3177-23,23c0,12.6822,10.3177,23,23,23c12.6822,0,23-10.3178,23-23 C59,23.3177,48.6822,13,36,13z"/>
       </g>

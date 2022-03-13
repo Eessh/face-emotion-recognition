@@ -1,6 +1,6 @@
 const Disgusted = () => {
   return(
-    <svg id="emoji" width={50} height={50} viewBox="0 0 72 72">
+    <svg id="emoji" width={70} height={70} viewBox="0 0 72 72">
       <g id="color">
         <circle cx="36.0027" cy="36" r="23" fill="#B1CC33"/>
       </g>

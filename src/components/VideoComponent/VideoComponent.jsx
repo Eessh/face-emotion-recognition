@@ -14,7 +14,7 @@ const VideoComponent = () => {
     <>
       {webcamOn ? <VideoStream /> : <WebcamTurnedOff />}
       {webcamOn && overlayOn && <VideoStreamOverlay />}
-      {emojiOn && <span className="absolute top-8 right-8"><EmojiWidget /></span>}
+      {webcamOn && emojiOn && <span className="absolute top-8 right-8"><EmojiWidget /></span>}
     </>
   );
 };
