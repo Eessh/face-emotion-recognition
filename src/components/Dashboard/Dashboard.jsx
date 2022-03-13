@@ -1,11 +1,14 @@
 import { AnimatePresence } from "framer-motion";
 import VideoComponent from "../VideoComponent";
 import RealTimeEmotion from "../RealTimeEmotion";
+import { useDashboardContext } from "./DashboardContext";
 import {Settings, SettingsModal, useSettingsContext} from "../Settings";
+import {RecordingWidget, RecordedExpressionsModal} from "../Recording";
 import "./Dashboard.css";
 
 const Dashboard = () => {
 
+  const {recordedExpressionsVisible} = useDashboardContext();
   const {settingsVisible} = useSettingsContext();
 
   return(
@@ -17,7 +20,8 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="dashboard-right flex-1">
-        <div className="realtime-emotion flex flex-row items-center justify-center h-full">
+        <div className="realtime-emotion relative flex flex-row items-center justify-center h-full">
+          {/* <RecordingWidget /> */}
           <RealTimeEmotion />
         </div>
       </div>
@@ -33,6 +37,13 @@ const Dashboard = () => {
         onExitComplete={() => null}
       >
         {settingsVisible && <SettingsModal />}
+      </AnimatePresence>
+      <AnimatePresence
+        initial={false}
+        exitBeforeEnter={true}
+        onExitComplete={() => null}
+      >
+        {recordedExpressionsVisible && <RecordedExpressionsModal />}
       </AnimatePresence>
     </div>
   );

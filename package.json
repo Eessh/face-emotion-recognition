@@ -12,6 +12,8 @@
     "@testing-library/user-event": "^13.5.0",
     "face-api.js": "^0.22.2",
     "framer-motion": "^6.2.8",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",

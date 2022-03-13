@@ -1,3 +1,4 @@
+import { useDashboardContext } from "../Dashboard";
 import { useSettingsContext } from "./SettingsContext";
 import "./Settings.css";
 import { Button, Toggle } from "../AnimatedComponents";
@@ -8,6 +9,7 @@ const Settings = () => {
     webcamOn, setWebcamOn,
     setSettingsVisible
   } = useSettingsContext();
+  const {setRecordedExpressions, setRecordedExpressionsVisible} = useDashboardContext();
 
   return(
     <div className="flex flex-row justify-between mx-4 px-4 py-2 bg-bg-2 rounded-lg shadow-2xl border-2 border-fg-1">
@@ -17,7 +19,10 @@ const Settings = () => {
           <Toggle
             initialState={webcamOn}
             onFunc={() => {setWebcamOn(true)}}
-            offFunc={() => {setWebcamOn(false)}}
+            offFunc={() => {
+              setWebcamOn(false);
+              setRecordedExpressionsVisible(true);
+            }}
           />
         </span>
       </div>

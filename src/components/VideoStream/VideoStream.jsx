@@ -16,6 +16,7 @@ const VideoStream = () => {
     setEmoji,
     setRecordedExpressions,
     setMountedVideoComponent,
+    recording,
     canvasRef
   } = useDashboardContext();
   const {

@@ -13,6 +13,7 @@ const SettingsModal = () => {
   return(
     <Modal
       backdropClickEvent={() => setSettingsVisible(false)}
+      extraClasses={"w-[300px] h-fit"}
     >
       <div className="w-full flex flex-row items-center justify-between mb-6">
         <span className="text-gray-600 text-2xl ml-2">Settings</span>
@@ -35,7 +36,7 @@ const SettingsModal = () => {
         </span>
       </div>
       <div className="w-full flex flex-row items-center justify-between mb-2">
-        <span className="text-gray-600 text-xl ml-2">Video Overlay</span>
+        <span className="text-gray-600 text-xl ml-2">Face Landmarks</span>
         <span className="mr-2">
           <Toggle
             initialState={overlayOn}

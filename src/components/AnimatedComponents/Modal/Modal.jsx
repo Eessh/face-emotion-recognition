@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import BackDrop from "../Backdrop/Backdrop";
 import "./Modal.css";
 
-const Modal = ({backdropClickEvent, children}) => {
+const Modal = ({backdropClickEvent, extraClasses, children}) => {
   return (
     <BackDrop onClick={backdropClickEvent}>
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        className="Modal bg-bg-1 m-auto p-2 rounded-2xl flex flex-col items-center"
+        className={`Modal bg-bg-1 m-auto p-2 rounded-2xl flex flex-col items-center ${extraClasses ? extraClasses : ""}`}
         variants={dropIn}
         initial="hidden"
         animate="visible"

@@ -1,5 +1,5 @@
 .Modal {
-  width: clamp(20%, 200px, 80%);
+  /* width: clamp(20%, 200px, 80%); */
   /* height: min(50%, 300px); */
   height: fit-content;
 }

@@ -7,16 +7,20 @@ const DashboardContextProvider = ({children}) => {
   const [currentExpression, setCurrentExpression] = useState(null);
   const [emoji, setEmoji] = useState(null);
   const [recordedExpressions, setRecordedExpressions] = useState([]);
+  const [recordedExpressionsVisible, setRecordedExpressionsVisible] = useState(false);
   const [recordedExpressions2, setRecordedExpressions2] = useState([]);
   const [mountedVideoComponent, setMountedVideoComponent] = useState(false);
+  const [recording, setRecording] = useState(false);
   const canvasRef = useRef();
 
   const contextValue = {
     currentExpression, setCurrentExpression,
     emoji, setEmoji,
     recordedExpressions, setRecordedExpressions,
+    recordedExpressionsVisible, setRecordedExpressionsVisible,
     recordedExpressions2, setRecordedExpressions2,
     mountedVideoComponent, setMountedVideoComponent,
+    recording, setRecording,
     canvasRef
   };
 
