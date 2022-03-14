@@ -2,6 +2,11 @@
   "name": "face-emotion-recognition",
   "version": "0.1.0",
   "private": true,
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "dependencies": {
     "@nivo/bar": "^0.79.1",
     "@nivo/bump": "^0.79.1",
@@ -12,6 +17,7 @@
     "@testing-library/user-event": "^13.5.0",
     "face-api.js": "^0.22.2",
     "framer-motion": "^6.2.8",
+    "fs": "0.0.1-security",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "react": "^17.0.2",
