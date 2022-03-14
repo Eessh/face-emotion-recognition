@@ -1,7 +1,7 @@
 import * as faceapi from "face-api.js";
 
 // const ModelMap = {};
-const ModelsURL = `${process.env.PUBLIC_URL}/models`;
+const ModelsURL = `/models`;
 // const ModelsURL = `http://localhost:3000/models`;
 
 const loadModel = (modelName) => {};
