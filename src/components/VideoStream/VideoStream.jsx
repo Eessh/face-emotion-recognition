@@ -16,7 +16,6 @@ const VideoStream = () => {
     setEmoji,
     setRecordedExpressions,
     setMountedVideoComponent,
-    recording,
     canvasRef
   } = useDashboardContext();
   const {
@@ -120,7 +119,7 @@ const VideoStream = () => {
   const getFaces = useCallback(async () => {
     if (webcamRef.current != null) {
       const info = await detectFaces(webcamRef.current.video);
-      if (overlayOn) {
+      if (webcamOn && overlayOn && webcamRef.current != null) {
         await drawResults(webcamRef.current.video, canvasRef.current, info, "boxLandmarks");
       }
       const formattedExpression = formatExpression(info);
@@ -155,7 +154,7 @@ const VideoStream = () => {
       audio={false}
       ref={webcamRef}
       videoConstraints={VideoConstraints}
-      className="shadow-2xl rounded-lg"
+      className="shadow-2xl rounded-lg w-[300px] sm:w-[600px] md:w-[700px]"
     />
   );
 };

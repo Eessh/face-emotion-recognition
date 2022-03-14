@@ -1,6 +1,6 @@
 const WebcamTurnedOff = () => {
   return(
-    <div className="flex flex-row items-center justify-center border-none rounded-lg bg-bg-2 m-4 shadow-2xl w-[576px] h-[324px] text-2xl text-gray-600">
+    <div className="rounded-lg bg-bg-2 m-4 shadow-2xl p-10 md:p-20 text-sm sm:text-xl text-gray-600">
       Webcam Turned Off
     </div>
   );

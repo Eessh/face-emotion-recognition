@@ -9,7 +9,7 @@ const Settings = () => {
     webcamOn, setWebcamOn,
     setSettingsVisible
   } = useSettingsContext();
-  const {setRecordedExpressions, setRecordedExpressionsVisible} = useDashboardContext();
+  const {setRecordedExpressionsVisible, setMountedVideoComponent} = useDashboardContext();
 
   return(
     <div className="flex flex-row justify-between mx-4 px-4 py-2 bg-bg-2 rounded-lg shadow-2xl border-2 border-fg-1">
@@ -22,6 +22,7 @@ const Settings = () => {
             offFunc={() => {
               setWebcamOn(false);
               setRecordedExpressionsVisible(true);
+              setMountedVideoComponent(false);
             }}
           />
         </span>

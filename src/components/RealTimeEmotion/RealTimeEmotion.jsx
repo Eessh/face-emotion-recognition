@@ -9,7 +9,7 @@ const RealTimeEmotion = () => {
   const getTooltip = (data) => {
     // should only return HTML
     return (
-      <span className="tooltip bg-bg-1 rounded-md text-xs p-1 border-solid border-2">{`${data.data.expression}: ${Math.round(data.data.percent)}%`}</span>
+      <span className="tooltip bg-bg-1 rounded-md text-xs p-1 border-solid border-gray-500 border-2">{`${data.data.expression}: ${Math.round(data.data.percent)}%`}</span>
     );
   };
 

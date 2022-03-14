@@ -1,0 +1,5 @@
+@media only screen and (max-width: 640px) {
+  .dashboard-right {
+    display: none;
+  }
+}

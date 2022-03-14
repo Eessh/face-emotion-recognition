@@ -31,7 +31,7 @@ const RecordedExpressionsModal = () => {
       const pdf = new jsPDF({
         orientation: "landscape",
         unit: "px",
-        format: [800, 600]
+        format: [500, 400]
       });
       pdf.addImage(imgData, "PNG", 0, 0);
       pdf.save("record.pdf");
@@ -41,10 +41,10 @@ const RecordedExpressionsModal = () => {
   return(
     <Modal
       backdropClickEvent={handleModalClose}
-      extraClasses={"w-[80%] h-fit"}
+      extraClasses={"w-fit h-fit"}
     >
-      <div className="w-full flex flex-row items-center justify-between mb-4">
-        <span className="text-gray-600 text-2xl ml-2">Recorded Expressions</span>
+      <div className="w-full flex flex-row items-center justify-between mb-0">
+        <span className="text-gray-600 text-xl ml-2">Recorded Expressions</span>
         <Button onClick={handleModalClose}>
           <span
             className="rounded-full p-[0.125rem] mr-1 cursor-pointer transition-all hover:scale-110 bg-fg-1 hover:bg-fg-2"
@@ -53,7 +53,6 @@ const RecordedExpressionsModal = () => {
           </span>
         </Button>
       </div>
-      <pre className="text-lg p-2 bg-fg-1 rounded-lg"><code>X-axis: Time Elapsed, Y-axis: Emotions</code></pre>
       <div className="chart" ref={chartRef}>
         <ResponsiveAreaBump
           data={recordedExpressions}
@@ -75,11 +74,14 @@ const RecordedExpressionsModal = () => {
           tooltip={(data) => getTooltip(data)}
         />
       </div>
-      <Button
-        onClick={downloadChart}
-      >
-        <span className="p-2 bg-fg-1 rounded-lg text-gray-700 text-base">Download</span>
-      </Button>
+      <div className="w-full flex flex-row items-center justify-evenly mb-4">
+        <pre className="text-lg p-2 bg-fg-1 rounded-lg"><code>X-axis: Time Elapsed, Y-axis: Emotions</code></pre>
+        <Button
+          onClick={downloadChart}
+        >
+          <span className="p-2 bg-fg-1 rounded-lg text-gray-700 text-base">Download</span>
+        </Button>
+      </div>
     </Modal>
   );
 };

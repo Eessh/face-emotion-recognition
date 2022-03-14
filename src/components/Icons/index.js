@@ -1,4 +1,5 @@
 import CloseIcon from "./CloseIcon";
+import ExclamationIcon from "./ExclamationIcon";
 import SettingsIcon from "./SettingsIcon";
 import Angry from "./Emojis/Angry";
 import Disgusted from "./Emojis/Disgusted";
@@ -10,6 +11,7 @@ import Surprised from "./Emojis/Surprised";
 
 export {
   CloseIcon,
+  ExclamationIcon,
   SettingsIcon,
   Angry,
   Disgusted,
