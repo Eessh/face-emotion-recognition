@@ -23,6 +23,7 @@ const VideoStream = () => {
     overlayOn,
   } = useSettingsContext();
 
+  // Sets mountedVideoComponent to true after 2seconds, when this component is mounted.
   useEffect(() => {
     setTimeout(() => {
       webcamOn && setMountedVideoComponent(true);
@@ -116,6 +117,12 @@ const VideoStream = () => {
     return recordedExpressions;
   };
 
+  /**
+   * 1) Detects faces from the VideoStream from the Webcam.
+   * 2) Draws the face detections, face landmarks onto the VideoStreamOverlay.
+   * 3) Sets the emoji expression.
+   * 4) Records the expression.
+   */
   const getFaces = useCallback(async () => {
     if (webcamRef.current != null) {
       const info = await detectFaces(webcamRef.current.video);

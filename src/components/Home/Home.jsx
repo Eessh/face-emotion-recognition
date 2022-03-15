@@ -63,6 +63,8 @@ const Home = () => {
         </div>
         <div className="min-w-full h-24 bg-gradient-to-b from-bg-1 to-bg-2"></div>
       </section>
+
+
       <section className="face-emotion w-full flex flex-col lg:flex-row items-center lg:pt-16 justify-start lg:justify-between lg:pr-10 bg-bg-2">
         <div className="face-emotion-left w-full h-auto flex flex-row items-center justify-center lg:ml-20 flex-1">
           <img className="w-11/12 lg:w-[640px] lg:h-[480px]" src={sample} alt=""></img>
@@ -80,6 +82,8 @@ const Home = () => {
           </p>
         </div>
       </section>
+
+      
       <section className="emotion-analysis w-full flex flex-col lg:flex-row items-center pt-16 pb-16 justify-start lg:justify-between lg:pr-10 bg-bg-2">
         <div className="face-emotion-left w-full h-auto flex flex-row items-center justify-center flex-1 lg:ml-20">
           <img className="w-11/12 lg:w-[640px] lg:h-[480px]" src={sample} alt=""></img>

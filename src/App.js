@@ -1,8 +1,5 @@
 import Home from './components/Home';
-import { loadEssentialModels } from './utils/faceAPI';
 import './App.css';
-
-loadEssentialModels();
 
 function App() {
   return (

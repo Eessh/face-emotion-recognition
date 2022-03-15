@@ -12,19 +12,31 @@ const RecordedExpressionsModal = () => {
   const chartRef = useRef(null);
   const {recordedExpressions, setRecordedExpressions, setRecordedExpressionsVisible} = useDashboardContext();
 
+  /**
+   * 1) Clears all the recordedExpressions.
+   * 2) Closes the RecordedExpressionsModal.
+   */
   const handleModalClose = () => {
     setRecordedExpressions([]);
     setRecordedExpressionsVisible(false);
   };
 
+  /**
+   * 
+   * @param {object} data - Data of the expression which was hovered.
+   * @returns {HTMLSpanElement} - Reutrns a <span> with the name of the expression which was hovered.
+   */
   const getTooltip = (data) => {
-    // console.log("data: ", data);
     // should only return HTML
     return (
       <span className="tooltip bg-bg-1 rounded-md text-sm p-1 border-solid border-gray-600 border-2">{`${data.serie.id}`}</span>
     );
   };
 
+  /**
+   * 1) Converts the chart component to an image.
+   * 2) Renders the image to a PDF.
+   */
   const downloadChart = () => {
     html2canvas(chartRef.current).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");

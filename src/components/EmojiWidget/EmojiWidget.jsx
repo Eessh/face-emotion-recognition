@@ -9,6 +9,10 @@ import {
   Surprised
 } from "../Icons";
 
+/**
+ * 
+ * @returns Returns the respective emoji for the currentExpression
+ */
 const EmojiWidget = () => {
 
   const {emoji} = useDashboardContext();

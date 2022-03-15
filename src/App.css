@@ -17,7 +17,6 @@
   /* background-color: #282c34; */
   background-color: #FFEDD3;
   box-sizing: border-box;
-  /* min-width: 100%; */
   width: fit-content;
   min-height: 100vh;
   display: flex;

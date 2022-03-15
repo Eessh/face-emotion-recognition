@@ -3,9 +3,19 @@ import { useDashboardContext } from "../Dashboard";
 import Spinner from "../Spinner/Spinner";
 import "./RealTimeEmotion.css";
 
+/**
+ * 
+ * @returns Returns a Bar Chart Component with the percentages of each emotion.
+ */
 const RealTimeEmotion = () => {
 
   const { currentExpression, mountedVideoComponent } = useDashboardContext();
+
+  /**
+   * 
+   * @param {object} data - Data of the expression which was hovered.
+   * @returns {HTMLSpanElement} - Reutrns a <span> with the name of the expression which was hovered.
+   */
   const getTooltip = (data) => {
     // should only return HTML
     return (
@@ -44,7 +54,7 @@ const RealTimeEmotion = () => {
         }}
         tooltip={(data) => getTooltip(data)}
       />
-    : <Spinner />
+    : <Spinner text={"Waiting for Webcam VideoStream"} />
   );
 };
 
