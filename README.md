@@ -1,5 +1,6 @@
 # Face Emotion Recognition
-
+![Logo](./src/logo.svg)
+<img src="src/logo.svg" width={200} height={200}>
 Recognizes the expressions of the face in real-time, from the video stream.
 
 ### To run on local server
