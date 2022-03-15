@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "../AnimatedComponents";
 import "./Home.css";
-import sample from "../../assets/sample.jpg";
+import emotionRecognitionChart from "../../assets/emotionRecognitionChart.jpg";
+import overallEmotionAnalysis from "../../assets/overallEmotionAnalysis-1.jpg";
 
 const Home = () => {
   return(
@@ -67,7 +68,7 @@ const Home = () => {
 
       <section className="face-emotion w-full flex flex-col lg:flex-row items-center lg:pt-16 justify-start lg:justify-between lg:pr-10 bg-bg-2">
         <div className="face-emotion-left w-full h-auto flex flex-row items-center justify-center lg:ml-20 flex-1">
-          <img className="w-11/12 lg:w-[640px] lg:h-[480px]" src={sample} alt=""></img>
+          <img className="w-11/12 lg:w-[640px] lg:h-[480px]" src={emotionRecognitionChart} alt=""></img>
         </div>
         <div className="face-emotion-right mt-4 w-11/12 lg:mt-20 flex-1 flex flex-col items-start justify-start">
           <p className="face-emotion-title font-dmMono text-2xl lg:text-3xl p-2 border-none rounded-lg text-gray-600 bg-bg-1">Real Time Emotion Recognition</p>
@@ -86,7 +87,7 @@ const Home = () => {
       
       <section className="emotion-analysis w-full flex flex-col lg:flex-row items-center pt-16 pb-16 justify-start lg:justify-between lg:pr-10 bg-bg-2">
         <div className="face-emotion-left w-full h-auto flex flex-row items-center justify-center flex-1 lg:ml-20">
-          <img className="w-11/12 lg:w-[640px] lg:h-[480px]" src={sample} alt=""></img>
+          <img className="w-11/12 lg:w-[640px] lg:h-[480px]" src={overallEmotionAnalysis} alt=""></img>
         </div>
         <div className="emotion-analysis-right mt-4 w-11/12 lg:mt-20 flex-1 flex flex-col items-start justify-start">
           <p className="emotion-analysis-title font-dmMono text-2xl lg:text-3xl p-2 border-none rounded-lg text-gray-600 bg-bg-1">Overall Emotion Analysis</p>
