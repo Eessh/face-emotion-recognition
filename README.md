@@ -37,13 +37,19 @@ When the webcam is turned off (for example when the video call is completed), th
 
 ### Design
 - Chosen React's ContextAPI over Redux (as this app has a small state, which could be managed by ContextAPI)
-- Used TailwindCSS to get ease with CSS.
+- Used TailwindCSS as it has utility classes, which makes styling easier.
 - Used FramerMotion for all those smooth animations.
-- This webapp does the face detection, face emotion detection in the frontend.
+- This webapp does the face detection, face emotion detection in the frontend using the npm package face-api.js.
+- Used react-webcam package for the webcam integration.
 
 ### Regrets
 - I should have chosen to do all the heavy processing in the backend
-    - Reason: The heavy work done when recognizing the faces, emotions is slowing down the browser. This problem is found when the website is deployed, there is no problem when tested on local server.
+    - The heavy work done when recognizing the faces, emotions is slowing down the browser.
+    - This shows effect especially on mobile, on mobile platform this webapp is super laggy.
+    - This problem is found when the website is deployed, there is no problem when tested on local server.
+- I should have used Typescript instead of Javascript
+    - When the project is small, I haven't faced any problem in autocompletion, definitions, etc ...
+    - As the project grew, the autocompletion has gone especially on variables of object type. I used to go back to the file where the variable is defined, and used to check its properties ;(
 
 
 ### To run on local server
