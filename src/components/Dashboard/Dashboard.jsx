@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 import VideoComponent from "../VideoComponent";
 import RealTimeEmotion from "../RealTimeEmotion";
-import { useDashboardContext, useWinSize } from "./DashboardContext";
+import { useDashboardContext } from "./DashboardContext";
 import {Settings, SettingsModal, useSettingsContext} from "../Settings";
 import RecordedExpressionsModal from "../Recording";
 import "./Dashboard.css";
@@ -12,7 +12,7 @@ const Dashboard = () => {
   const {settingsVisible} = useSettingsContext();
 
   return(
-    <div className="dashboard flex-1 w-full flex flex-col md:flex-row">
+    <div className="dashboard min-h-screen min-w-full bg-bg-1 flex-1 w-full flex flex-col md:flex-row">
       <div className="dashboard-left videocomponent flex-1 flex flex-col items-center justify-center mt-16 md:mt-0">
         <div className="flex flex-col w-fit relative">
           <VideoComponent />

@@ -1,20 +1,3 @@
-.banner {}
-.banner-left {}
-.banner-right {}
-.banner-title,
-.face-emotion-title,
-.emotion-analysis-title,
-.banner-description {
-  color: grey;
-}
-.face-emotion-description,
-.emotion-analysis-description {
-  color: white;
-}
-.banner-run {}
-.banner-run-github {}
-.banner-run-run {}
-
 img {
   background-color: #FF5C58;
   border: none;

@@ -1,13 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
 import App from './App';
+import { DashboardContextProvider } from './components/Dashboard';
+import { SettingsContextProvider } from './components/Settings';
 import reportWebVitals from './reportWebVitals';
 
+const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <React.StrictMode>
+    <BrowserRouter>
+      <DashboardContextProvider>
+        <SettingsContextProvider>
+          <Routes>
+            <Route path='/' element={<App />} />
+            <Route path='/dashboard' element={
+              <React.Suspense fallback={<>Loading Fallback ...</>}>
+                <Dashboard />
+              </React.Suspense>
+            } />
+          </Routes>
+        </SettingsContextProvider>
+      </DashboardContextProvider>
+      {/* <App /> */}
+    </BrowserRouter>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-import { detectFaces, drawResults, drawPredictionsOnOverlay } from "../../utils/faceAPI";
+import { detectFaces, drawResults } from "../../utils/faceAPI";
 import { useDashboardContext } from "../Dashboard";
 import { useSettingsContext } from "../Settings";
 import Webcam from "react-webcam";
@@ -27,7 +27,7 @@ const VideoStream = () => {
     setTimeout(() => {
       webcamOn && setMountedVideoComponent(true);
     }, 2000);
-  }, []);
+  });
 
   useEffect(() => {
     // Calling getFaces() 2-times every second
@@ -38,7 +38,7 @@ const VideoStream = () => {
     return() => {
       clearInterval(tick);
     }
-  }, []);
+  });
 
   /**
    * 
@@ -140,7 +140,6 @@ const VideoStream = () => {
         return formattedExpression;
       });
       await setRecordedExpressions((recordedExpressions) => {
-        console.log("Recorded Expressions: ", recordedExpressions);
         if (formattedExpression === undefined || formattedExpression === null) {
           return recordedExpressions;
         }

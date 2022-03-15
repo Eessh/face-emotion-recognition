@@ -1,4 +1,4 @@
-import { createContext, useContext, useLayoutEffect, useRef, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 
 const DashboardContext = createContext({});
 const expressions = ["neutral", "happy", "sad", "angry", "fearful", "disgusted", "surprised"];
