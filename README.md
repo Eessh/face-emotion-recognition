@@ -7,9 +7,9 @@
     </a>
 </h1>
 
-# Face Emotion Recognition
+Recognizes the faces, and expressions of the faces in real-time, from the video stream.
 
-Recognizes the expressions of the face in real-time, from the video stream.
+🚀 Live App: https://face-emotion-recognition.netlify.app
 
 ### To run on local server
 ```bash
